@@ -1,0 +1,18 @@
+queue:
+- name: adapter-update
+  rate: 5/s
+  retry_parameters:
+    min_backoff_seconds: 60
+- name: reconnect
+  rate: 5/s
+  retry_parameters:
+    min_backoff_seconds: 14400
+    max_backoff_seconds: 14400
+- name: create-publish-job
+  rate: 5/s
+  retry_parameters:
+    min_backoff_seconds: 10
+- name: admin
+  rate: 5/s
+  retry_parameters:
+    min_backoff_seconds: 10

@@ -1,0 +1,36 @@
+service: linker
+
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: app.services.linker.linker.app
+  secure: always
+
+libraries:
+  - name: ssl
+    version: latest
+  - name: pycrypto
+    version: latest
+
+env_variables:
+  OAUTHLIB_INSECURE_TRANSPORT: {{ OAUTHLIB_INSECURE_TRANSPORT }}
+  QBO_TOKEN_URL: "{{ QBO_TOKEN_URL }}"
+  QBO_AUTH_HOST: "{{ QBO_AUTH_HOST }}"
+  QBO_API_HOST: "{{ QBO_API_HOST }}"
+  QBO_API_MINOR_VERSION: "{{ QBO_API_MINOR_VERSION }}"
+  QBO_BASE_API_URI: "{{ QBO_BASE_API_URI }}"
+  XERO_TOKEN_URL: "{{ XERO_TOKEN_URL }}"
+  XERO_AUTH_HOST: "{{ XERO_AUTH_HOST }}"
+  XERO_ACCESS_URL: "{{ XERO_ACCESS_URL }}"
+  XERO_API_URL: "{{ XERO_API_URL }}"
+  ZUORA_BASE_API_URI: "{{ ZUORA_BASE_API_URI }}"
+  LOGIN_BASE_REDIRECT_URI: "{{ LOGIN_BASE_REDIRECT_URI }}"
+  OAUTH1_BASE_REDIRECT_URI: "{{ OAUTH1_BASE_REDIRECT_URI }}"
+  OAUTH2_BASE_REDIRECT_URI: "{{ OAUTH2_BASE_REDIRECT_URI }}"
+  API_KEY: "{{ API_KEY }}"
+  {{ ADDITIONAL_ENV_VARS }}
+
+{{ ADDITIONAL_SETTINGS }}

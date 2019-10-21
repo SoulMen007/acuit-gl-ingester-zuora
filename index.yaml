@@ -1,0 +1,71 @@
+indexes:
+
+- kind: Item
+  properties:
+  - name: org_uid
+    direction: asc
+  - name: changeset
+    direction: desc
+  - name: endpoint
+    direction: asc
+  - name: item_id
+    direction: desc
+  - name: parent_id
+
+- kind: Item
+  properties:
+  - name: org_uid
+  - name: changeset
+
+- kind: OrgChangeset
+  properties:
+  - name: org_uid
+  - name: ingestion_completed_at
+    direction: desc
+
+- kind: OrgChangeset
+  properties:
+  - name: publish_successful
+  - name: publish_attempt_count
+
+- kind: OrgChangeset
+  properties:
+  - name: org_uid
+  - name: publish_job_failed
+  - name: publish_job_finished
+  - name: publish_finished_at
+    direction: desc
+
+- kind: OrgChangeset
+  properties:
+  - name: publish_job_failed
+  - name: __key__
+    direction: desc
+
+- kind: OrgChangeset
+  properties:
+  - name: publish_changeset_failed
+  - name: __key__
+    direction: desc
+
+- kind: OrgChangeset
+  properties:
+  - name: publish_job_failed
+  - name: publish_changeset_failed
+  - name: publish_job_finished
+  - name: org_uid
+  - name: changeset
+    direction: desc
+
+- kind: OrgChangeset
+  properties:
+  - name: org_uid
+  - name: changeset
+    direction: desc
+
+- kind: Org
+  properties:
+  - name: provider
+  - name: status
+  - name: last_update_cycle_completed_at
+    direction: desc

@@ -1,0 +1,14 @@
+.idea/
+lib/
+*.pyc
+default.yaml
+linker.yaml
+adapter.yaml
+admin.yaml
+orchestrator.yaml
+api.yaml
+cron.yaml
+config/*secret*
+.DS_Store
+.coverage
+htmlcov/

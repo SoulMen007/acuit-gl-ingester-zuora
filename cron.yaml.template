@@ -1,0 +1,19 @@
+cron:
+  - description: regular job to update orgs
+    url: /adapter/init_all_updates
+    schedule: every 1 minutes
+  - description: regular job to kick off publishing through dataflow
+    url: /orchestrator/publish
+    schedule: every 60 minutes
+  - description: regular job to mark changelogs as completed/failed
+    url: /orchestrator/update_changesets
+    schedule: every 10 minutes
+  - description: daily job to cleanup old items for an org
+    url: /orchestrator/clean_old_changeset_items
+    schedule: every 24 hours
+{%- for backup in backups %}
+  - description: datastore backup
+    url: /cloud-datastore-export?output_url_prefix=gs://{{ PROJECT }}-ds-export-backup&kind={{ ",".join(backup.kinds) }}
+    schedule: {{ backup.schedule }}
+    timezone: Australia/NSW
+{%- endfor %}

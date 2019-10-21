@@ -1,0 +1,5 @@
+PyJWT
+jinja2
+pyyaml==5.1
+google-cloud-pubsub==0.22.0
+mock

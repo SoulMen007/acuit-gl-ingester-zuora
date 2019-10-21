@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Select Types
+{% endblock %}
+
+{% block content %}
+
+<form action="/admin/replay_item_types" method="POST">
+    {% if org_uid %}
+    <input type="hidden" name="org_uid" value="{{ org_uid }}" />
+    {% endif %}
+    <input type="hidden" name="action" value="{{ action }}" />
+    <table class="tight">
+        <thead>
+            <tr>
+                <th>Item Type</th>
+                <th class="narrow align-center">Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item_type in item_types %}
+            <tr>
+                <td>{{ item_type }}</td>
+                <td class="narrow align-center"><input type="checkbox" name="item_type" value="{{ item_type }}" /></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td class="align-center"><a href="#" onclick="toogleCheckboxes(); return false">toggle all</a></td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="align-right">
+        <button>{{ action }} ITEM TYPES (for {% if org_uid %}{{ org_uid }}{% else %}all orgs{% endif %})</button>
+    </div>
+</form>
+
+{% endblock %}

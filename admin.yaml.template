@@ -1,0 +1,20 @@
+service: admin
+
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: app.services.admin.admin.app
+  secure: always
+  login: admin
+
+libraries:
+- name: ssl
+  version: latest
+
+env_variables:
+  {{ ADDITIONAL_ENV_VARS }}
+
+{{ ADDITIONAL_SETTINGS }}

@@ -1,0 +1,8 @@
+QBO_TOKEN_URL: 'https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer'
+QBO_AUTH_HOST: "https://appcenter.intuit.com/connect/oauth2"
+QBO_API_HOST: "https://sandbox-quickbooks.api.intuit.com"
+QBO_BASE_API_URI: "https://sandbox-quickbooks.api.intuit.com/v3/"
+QBO_API_MINOR_VERSION: 35
+BASE_REDIRECT_URI: "https://acuit-zoran-wins-sandbox.appspot.com/linker/oauth"
+ADDITIONAL_ENV_VARS: |-
+  SHOW_CONNECT_BUTTON: 1

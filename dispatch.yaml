@@ -1,0 +1,11 @@
+dispatch:
+- url: "*/linker/*"
+  service: linker
+- url: "*/adapter/*"
+  service: adapter
+- url: "*/admin/*"
+  service: admin
+- url: "*/orchestrator/*"
+  service: orchestrator
+- url: "*/api/*"
+  service: api

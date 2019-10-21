@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Select Types
+{% endblock %}
+
+{% block content %}
+
+<form action="/admin/reset_endpoints" method="POST">
+    {% if org_uid %}
+    <input type="hidden" name="org_uid" value="{{ org_uid }}" />
+    {% endif %}
+    <table class="tight">
+        <thead>
+            <tr>
+                <th>Endpoint</th>
+                <th class="narrow align-center">Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for endpoint in endpoints %}
+            <tr>
+                <td>{{ endpoint }}</td>
+                <td class="narrow align-center"><input type="checkbox" name="endpoint_index" value="{{ loop.index0 }}" /></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td class="align-center"><a href="#" onclick="toogleCheckboxes(); return false">toggle all</a></td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="align-right">
+        <button>RESET ENDPOINTS (for {% if org_uid %}{{ org_uid }}{% else %}all orgs{% endif %})</button>
+    </div>
+</form>
+
+{% endblock %}

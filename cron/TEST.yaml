@@ -1,0 +1,11 @@
+backups:
+  - schedule: "1 of month 08:00"
+    kinds:
+      - Item
+      - NormalizedItem
+  - schedule: "every day 08:00"
+    kinds:
+      - Org
+      - OrgChangeset
+      - OrgCredentials
+      - QboSyncData

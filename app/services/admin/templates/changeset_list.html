@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Changesets
+{% endblock %}
+
+{% block content %}
+<table style="padding-top: 1em;">
+    <thead>
+        <tr>
+            <th>Org UID</th>
+            <th>Changeset</th>
+            <th>Ingested At</th>
+            <th>Publish Running</th>
+            <th>Status</th>
+            <th>Publish Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for changeset in changesets %}
+
+        {% if changeset.publish_job_finished and not changeset.publish_job_failed and not changeset.publish_changeset_failed %}
+            {% set changeset_status = 'published' %}
+        {% elif changeset.publish_job_failed %}
+            {% set changeset_status = 'publish job failed' %}
+        {% elif changeset.publish_changeset_failed %}
+            {% set changeset_status = 'publish changeset failed' %}
+        {% elif changeset.ingestion_completed_at %}
+            {% set changeset_status = 'ingested' %}
+        {% endif %}
+
+        <tr>
+            <td>{{ changeset.org_uid }}</td>
+            <td>{{ changeset.changeset }}</td>
+            <td>{{ changeset.ingestion_completed_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            <td>{{ changeset.publish_job_running }}</td>
+            <td class="{{ changeset_status.replace(' ', '_') }}">{{ changeset_status }}</td>
+            <td class="job-color" data-job-id="{{ changeset.publish_job_id }}">
+                {{ changeset.publish_job_count }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if more %}
+<div class="row">
+    <div class="column align-right">
+    {% if org_uid %}
+        <a href="/admin/changeset_list/{{ org_uid }}?cursor={{ next_cursor.urlsafe() }}">Next Page</a>
+    {% else %}
+        <a href="/admin/changeset_list?failed={{ failed }}&cursor={{ next_cursor.urlsafe() }}">Next Page</a>
+    {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+function djb2(str){
+  var hash = 5381;
+  for (var i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) + str.charCodeAt(i); /* hash * 33 + c */
+  }
+  return hash;
+}
+
+function hashStringToColor(str) {
+  var hash = djb2(str);
+  var r = (hash & 0xFF0000) >> 16;
+  var g = (hash & 0x00FF00) >> 8;
+  var b = hash & 0x0000FF;
+  return "#" + ("0" + r.toString(16)).substr(-2) + ("0" + g.toString(16)).substr(-2) + ("0" + b.toString(16)).substr(-2);
+}
+
+(function() {
+  elements = document.getElementsByClassName("job-color");
+  for(i = 0; i < elements.length; i++) {
+    elements[i].style.borderRight = "3px solid " + hashStringToColor(elements[i].getAttribute('data-job-id'));
+  }
+})();
+{% endblock %}

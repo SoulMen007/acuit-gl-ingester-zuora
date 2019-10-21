@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ provider|title }} Authentication
+{% endblock %}
+
+{% block login %}
+<form action="/linker/handle_login" method="POST">
+    <fieldset>
+        <input type="hidden" name="provider" value="{{ provider }}" />
+        <input type="hidden" name="org_uid" value="{{ org_uid }}" />
+        <label for="userName">Username</label>
+        <input type="text" name="username" id="userName"/>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password"/>
+        <button type="submit" class="button-primary">login</button>
+    </fieldset>
+</form>
+{% endblock %}

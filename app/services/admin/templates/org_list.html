@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Org Listing
+{% endblock %}
+
+{% block search %}
+<form action="/admin/handle_connect_search" method="POST">
+    <div class="row">
+        {% if show_connect %}
+        <div class="column column-40">
+            <input type="text" name="org_uid" placeholder="Org UID" />
+        </div>
+        <div class="column column-60">
+            <form>
+              <select name="provider">
+                <option value="qbo">qbo</option>
+                <option value='xerov2'>xero</option>
+                <option value="zuora">zuora</option>
+              </select>
+            </form>
+            <button name="search" value="search">Search</button>
+            <button name="connect" value="connect">Connect</button>
+        </div>
+        {% else %}
+        <div class="column column-60">
+            <input type="text" name="org_uid" placeholder="Org UID" />
+        </div>
+        <div class="column column-40">
+            <button name="search" value="search">Search</button>
+        </div>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}
+
+{% block content %}
+<table style="padding-top: 1em;">
+    <thead>
+        <tr>
+            <th>Org UID</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Changeset (ingestion)</th>
+            <th colspan="{{ 5 if show_connect else 4 }}" class="align-center" style="width: 1%;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for org in orgs %}
+        <tr>
+            <td>{{ org.key.string_id() }}</td>
+            <td>{{ statuses[org.status] }}</td>
+            <td>{{ org.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            <td>
+                {% if changesets.get(org.key.string_id()) %}
+                    <a href="/admin/changeset_list/{{ org.key.string_id() }}">{{ changesets.get(org.key.string_id(), 'not found') }}</a>
+                {% else %}
+                    {{ changesets.get(org.key.string_id(), 'not found') }}
+                {% endif %}
+            </td>
+            <td class="tight">
+                <form action="/admin/sync" method="POST">
+                    <input type="hidden" name="provider" value="{{ org.provider }}" />
+                    <input type="hidden" name="org_uid" value="{{ org.key.string_id() }}" />
+                    <button type="submit" class="button-small button-outline" {% if org.status != 2 %}disabled{% endif %}>sync</button>
+                </form>
+            </td>
+            <td class="tight">
+                <form action="/admin/select_endpoints" method="POST">
+                    <input type="hidden" name="provider" value="{{ org.provider }}" />
+                    <input type="hidden" name="org_uid" value="{{ org.key.string_id() }}" />
+                    <button type="submit" class="button-small button-outline" {% if org.status != 2 %}disabled{% endif %}>reset</button>
+                </form>
+            </td>
+            <td class="tight">
+                <form action="/admin/select_item_types" method="POST">
+                    <input type="hidden" name="provider" value="{{ org.provider }}" />
+                    <input type="hidden" name="org_uid" value="{{ org.key.string_id() }}" />
+                    <input type="hidden" name="action" value="replay" />
+                    <button type="submit" class="button-small button-outline">replay</button>
+                </form>
+            </td>
+            <td class="tight">
+                <form action="/admin/select_item_types" method="POST">
+                    <input type="hidden" name="provider" value="{{ org.provider }}" />
+                    <input type="hidden" name="org_uid" value="{{ org.key.string_id() }}" />
+                    <input type="hidden" name="action" value="reload" />
+                    <button type="submit" class="button-small button-outline">reload</button>
+                </form>
+            </td>
+            {% if show_connect %}
+            <td class="tight">
+                <form action="/admin/handle_connect_search" method="POST">
+                    <input type="hidden" name="provider" value="{{ org.provider }}" />
+                    <input type="hidden" name="org_uid" value="{{ org.key.string_id() }}" />
+                    <button type="submit" name="connect" value="connect" class="button-small button-outline">link</button>
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if more %}
+<div class="row">
+    <div class="column align-right">
+        <a href="/admin/?cursor={{ next_cursor.urlsafe() }}">Next Page</a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

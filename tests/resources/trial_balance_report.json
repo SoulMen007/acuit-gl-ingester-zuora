@@ -1,0 +1,264 @@
+{
+  "Header": {
+    "Time": "2019-02-04T20:11:03-08:00",
+    "ReportName": "TrialBalance",
+    "DateMacro": "this month-to-date",
+    "ReportBasis": "Accrual",
+    "StartPeriod": "2019-02-01",
+    "EndPeriod": "2019-02-04",
+    "Currency": "USD",
+    "Option": [
+      {
+        "Name": "NoReportData",
+        "Value": "false"
+      }
+    ]
+  },
+  "Columns": {
+    "Column": [
+      {
+        "ColTitle": "",
+        "ColType": "Account"
+      },
+      {
+        "ColTitle": "Debit",
+        "ColType": "Money"
+      },
+      {
+        "ColTitle": "Credit",
+        "ColType": "Money"
+      }
+    ]
+  },
+  "Rows": {
+    "Row": [
+      {
+        "ColData": [
+          {
+            "value": "Bill.com Money In Clearing",
+            "id": "91"
+          },
+          {
+            "value": "234.00"
+          },
+          {
+            "value": ""
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Checking",
+            "id": "35"
+          },
+          {
+            "value": "1201.00"
+          },
+          {
+            "value": ""
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Savings",
+            "id": "36"
+          },
+          {
+            "value": "800.00"
+          },
+          {
+            "value": ""
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Accounts Receivable (A/R)",
+            "id": "84"
+          },
+          {
+            "value": "7026.41"
+          },
+          {
+            "value": ""
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Inventory Asset",
+            "id": "81"
+          },
+          {
+            "value": "596.25"
+          },
+          {
+            "value": ""
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Undeposited Funds",
+            "id": "4"
+          },
+          {
+            "value": "3224.31"
+          },
+          {
+            "value": ""
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Truck:Original Cost",
+            "id": "38"
+          },
+          {
+            "value": "13495.00"
+          },
+          {
+            "value": ""
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Accounts Payable (A/P)",
+            "id": "33"
+          },
+          {
+            "value": ""
+          },
+          {
+            "value": "1412.67"
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Mastercard",
+            "id": "41"
+          },
+          {
+            "value": ""
+          },
+          {
+            "value": "391.72"
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Arizona Dept. of Revenue Payable",
+            "id": "89"
+          },
+          {
+            "value": ""
+          },
+          {
+            "value": "0.00"
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Board of Equalization Payable",
+            "id": "90"
+          },
+          {
+            "value": ""
+          },
+          {
+            "value": "430.62"
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Loan Payable",
+            "id": "43"
+          },
+          {
+            "value": ""
+          },
+          {
+            "value": "4000.00"
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Notes Payable",
+            "id": "44"
+          },
+          {
+            "value": ""
+          },
+          {
+            "value": "25000.00"
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Opening Balance Equity",
+            "id": "34"
+          },
+          {
+            "value": "9337.50"
+          },
+          {
+            "value": ""
+          }
+        ]
+      },
+      {
+        "ColData": [
+          {
+            "value": "Retained Earnings",
+            "id": "2"
+          },
+          {
+            "value": ""
+          },
+          {
+            "value": "4679.46"
+          }
+        ]
+      },
+      {
+        "Summary": {
+          "ColData": [
+            {
+              "value": "TOTAL"
+            },
+            {
+              "value": "35914.47"
+            },
+            {
+              "value": "35914.47"
+            }
+          ]
+        },
+        "type": "Section",
+        "group": "GrandTotal"
+      }
+    ]
+  }
+}

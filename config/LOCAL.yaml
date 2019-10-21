@@ -1,0 +1,30 @@
+OAUTHLIB_INSECURE_TRANSPORT: 1
+QBO_TOKEN_URL: 'https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer'
+QBO_AUTH_HOST: "https://appcenter.intuit.com/connect/oauth2"
+QBO_API_HOST: "https://sandbox-quickbooks.api.intuit.com"
+QBO_BASE_API_URI: "https://sandbox-quickbooks.api.intuit.com/v3/"
+QBO_API_MINOR_VERSION: 35
+
+XERO_TOKEN_URL: "https://api.xero.com/oauth/RequestToken"
+XERO_AUTH_HOST: "https://api.xero.com/oauth/Authorize"
+XERO_ACCESS_URL: "https://api.xero.com/oauth/AccessToken"
+XERO_API_URL: "https://api.xero.com/api.xro/2.0"
+XERO_FILES_URL: "/files.xro/1.0"
+XERO_PAYROLL_URL: "/payroll.xro/1.0"
+
+ZUORA_AUTH_HOST: "https://rest.apisandbox.zuora.com/oauth/token"
+ZUORA_API_HOST: "https://rest.apisandbox.zuora.com"
+
+ZUORA_BASE_API_URI: "https://rest.apisandbox.zuora.com/v1"
+
+
+OAUTH1_BASE_REDIRECT_URI: "http://localhost:8080/linker/{}/oauth"
+OAUTH2_BASE_REDIRECT_URI: "http://localhost:8080/linker/oauth"
+LOGIN_BASE_REDIRECT_URI: "http://localhost:8080/linker/{}/{}/login"
+
+ADDITIONAL_SETTINGS: |-
+  application: acuit-renfei-sandbox
+  version: '1'
+ADDITIONAL_ENV_VARS: |-
+  PUBSUB_EMULATOR_HOST: localhost:8171
+    SHOW_CONNECT_BUTTON: 1

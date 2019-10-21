@@ -1,0 +1,19 @@
+service: api
+
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: app.services.api.api.app
+  secure: always
+
+libraries:
+- name: ssl
+  version: latest
+
+env_variables:
+  API_KEY: "{{ API_KEY }}"
+
+{{ ADDITIONAL_SETTINGS }}

@@ -1,0 +1,93 @@
+<!doctype html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <style>
+        body { font-family: 'Ubuntu Mono', monospace; }
+        .separator { border-top: 3px; }
+        .align-right { text-align: right; }
+        .align-center { text-align: center; }
+        .tight { padding: 0.2rem 0.5rem; }
+        .tight form, .tight button { margin-bottom: 0em; }
+        .tight td { padding: 0px; }
+        .button-small { font-size: 1rem; height: 2.2rem; line-height: 2.2rem; padding: 0 1rem; }
+        .message { padding: 0.7em 0em 0.1em 2em; border-radius: .4rem; background-color: #9b4dca; color: white; margin-bottom: 15px; }
+        .narrow { width: 20% }
+        .ingested { color: blue; }
+        .publish_changeset_failed { color: red; }
+        .publish_job_failed { color: red; }
+        .published { color: green; }
+    </style>
+    <script>
+        function toogleCheckboxes() {
+            var inputs = document.getElementsByTagName("input");
+            for(var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type == "checkbox") {
+                    if (inputs[i].checked )
+                        inputs[i].checked = false;
+                    else
+                        inputs[i].checked = true;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    {% set statuses = {1: 'linking', 2: 'connected', 3: 'disconnected'} %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="row" style="padding-top: 1em;">
+        <div class="column column-60 column-offset-20">
+            <div class="message">
+                <em>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </em>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% if message %}
+    <div class="row" style="padding-top: 1em;">
+        <div class="column column-60 column-offset-20">
+            <div class="message">
+                <em>
+                    <li>{{ message }}</li>
+                </em>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row" style="padding-top: 1em;">
+        <div class="column column-60 column-offset-20">
+            <div class="row" style="padding-top: 1em;">
+                <div class="column column-50">
+                    <a href="/admin/">Orgs</a> |
+                    <a href="/admin/commands">Commands</a> |
+                    <a href="/admin/changeset_list">Changesets</a> |
+                    <a href="/admin/changeset_list?failed=1">Failed Changesets</a>
+                </div>
+                <div class="column column-50 align-right">
+                    {% block search %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 1em;">
+        <div class="column column-60 column-offset-20">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <script>
+    {% block javascript %}{% endblock %}
+    </script>
+
+</body>

@@ -1,0 +1,31 @@
+service: adapter
+
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /adapter/.*/status
+  script: app.services.adapter.adapter.app
+  secure: always
+- url: /.*
+  script: app.services.adapter.adapter.app
+  secure: always
+  login: admin
+
+libraries:
+- name: ssl
+  version: latest
+
+env_variables:
+  OAUTHLIB_INSECURE_TRANSPORT: {{ OAUTHLIB_INSECURE_TRANSPORT }}
+  QBO_TOKEN_URL: "{{ QBO_TOKEN_URL }}"
+  QBO_AUTH_HOST: "{{ QBO_AUTH_HOST }}"
+  QBO_API_HOST: "{{ QBO_API_HOST }}"
+  QBO_API_MINOR_VERSION: "{{ QBO_API_MINOR_VERSION }}"
+  QBO_BASE_API_URI: "{{ QBO_BASE_API_URI }}"
+  ZUORA_BASE_API_URI: "{{ ZUORA_BASE_API_URI }}"
+  API_KEY: "{{ API_KEY }}"
+  {{ ADDITIONAL_ENV_VARS }}
+
+{{ ADDITIONAL_SETTINGS }}

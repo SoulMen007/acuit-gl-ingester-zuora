@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Commands
+{% endblock %}
+
+{% block content %}
+
+<table>
+    <tbody>
+
+        <tr>
+            <td>
+            <b>Initiate a sync for all orgs</b><br/>
+            <em>just like kicking the update cron job off</em>
+        </td>
+            <td>
+                <form action="/admin/sync" method="POST">
+                    <div class="row" style="padding-top: 1em;">
+                        <div class="column align-center">
+                            <button name="sync_all">SYNC ALL</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+            <b>Initiate a reset of specific endpoints for all orgs</b><br/>
+            <em>delete sync state for selected endpoints and commence next changeset sync</em>
+        </td>
+            <td>
+                <form action="/admin/select_endpoints" method="POST">
+                    <div class="row" style="padding-top: 1em;">
+                        <div class="column align-center">
+                            <button>RESET ENDPOINTS</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+            <b>Initiate a replay of specific item types for all orgs</b><br/>
+            <em>normalised canonical data items re-published on PubSub</em>
+        </td>
+            <td>
+                <form action="/admin/select_item_types" method="POST">
+                    <input type="hidden" name="action" value="replay" />
+                    <div class="row" style="padding-top: 1em;">
+                        <div class="column align-center">
+                            <button>REPLAY ITEM TYPES</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+            <b>Initiate a reload of specific item types for all orgs</b><br/>
+            <em>cached endpoint data re-normalised and re-published on PubSub</em>
+        </td>
+            <td>
+                <form action="/admin/select_item_types" method="POST">
+                    <input type="hidden" name="action" value="reload" />
+                    <div class="row" style="padding-top: 1em;">
+                        <div class="column align-center">
+                            <button>RELOAD ITEM TYPES</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+            <b>Publish un-published changesets in per-org jobs</b><br/>
+            <em>use this to unblock publish in case one org is causing the whole publish job to fail</em>
+        </td>
+            <td>
+                <form action="/admin/publish_per_org" method="POST">
+                    <input type="hidden" name="action" value="reload" />
+                    <div class="row" style="padding-top: 1em;">
+                        <div class="column align-center">
+                            <button>PUBLISH</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+{% endblock %}
